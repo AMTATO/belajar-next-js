@@ -17,5 +17,10 @@ img{
 }
 
 img:hover{
-    scale: 102%;
+    scale: 105%;
+    transition: .8s ease-in-out all;
+    -webkit-transition: .8s ease-in-out all;
+    -moz-transition: .8s ease-in-out all;
+    -ms-transition: .8s ease-in-out all;
+    -o-transition: .8s ease-in-out all;
 }

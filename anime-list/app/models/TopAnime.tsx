@@ -1,3 +1,5 @@
+import AnimeCard from "../components/AnimeCard";
+
 const getTopAnime = async () => {
   const res = await fetch(
     `${process.env.NEXT_PUBLIC_API_BASE_URL}/top/anime?limit=8`
@@ -10,4 +12,35 @@ const getTopAnime = async () => {
   return res.json();
 };
 
-export default getTopAnime;
+type Props = {};
+
+const TopAnime = async (props: Props) => {
+  const topAnime = await getTopAnime();
+  type Webp = {
+    image_url: string;
+  };
+  type Images = {
+    webp: Webp;
+  };
+  interface AnimeData {
+    mal_id: number;
+    title: string;
+    images: Images;
+  }
+  return (
+    <>
+      {topAnime.data.map((data: AnimeData) => {
+          return (
+            <AnimeCard
+              key={data.mal_id}
+              id={data.mal_id}
+              title={data.title}
+              images={data.images.webp.image_url}
+            ></AnimeCard>
+          );
+        })}
+    </>
+  )
+}
+
+export default TopAnime;
