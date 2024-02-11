@@ -1,4 +1,5 @@
 import AnimeCard from "@/app/components/AnimeCard";
+import CardList from "@/app/components/CardList";
 import { Suspense } from "react";
 
 const getAnime = async (keyword: string) => {
@@ -37,25 +38,24 @@ const Page = async (params: Props) => {
   }
   return (
     <>
-      <Suspense fallback={<div className="text-2xl">Loading...</div>}>
-        {resultAnime && (
-          <div className="grid md:grid-cols-4 sm:grid-cols-3 grid-cols-2 gap-4 px-4 my-4">
-            {resultAnime.data.map((data: AnimeData) => {
-              return (
-                <AnimeCard
-                  key={data.mal_id}
-                  id={data.mal_id}
-                  title={data.title}
-                  images={data.images.webp.image_url}
-                ></AnimeCard>
-              );
-            })}
-          </div>
-        )}
-        <div className="text-xl text-center">
-          Anime {keyword} tidak ditemukan
-        </div>
-      </Suspense>
+      {resultAnime && (
+        <CardList
+          title={`Hasil pencarian dari ${keyword}`}
+          titleStyle="text-xl"
+          link={"/"}
+          titleLink={"Beranda"}
+          data={resultAnime.data.map((data: AnimeData) => {
+            return (
+              <AnimeCard
+                key={data.mal_id}
+                id={data.mal_id}
+                title={data.title}
+                images={data.images.webp.image_url}
+              ></AnimeCard>
+            );
+          })}
+        />
+      )}
     </>
   );
 };

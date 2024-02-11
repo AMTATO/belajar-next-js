@@ -5,10 +5,18 @@ import TopChar from "./models/TopCharacter";
 const Page = async () => {
   return (
     <div>
-      <CardList title={"Anime Populer"} link={"/populer"} data={<TopAnime />} />
+      <CardList
+        title={"Anime Populer"}
+        titleStyle="text-2xl font-bold"
+        link={"/populer"}
+        titleLink={"Lihat Semua"}
+        data={<TopAnime />}
+      />
       <CardList
         title={"Karakter Populer"}
+        titleStyle="text-2xl font-bold"
         link={"/populer"}
+        titleLink={"Lihat Semua"}
         data={<TopChar />}
       />
     </div>

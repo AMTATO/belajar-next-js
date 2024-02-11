@@ -2,25 +2,42 @@
 @tailwind components;
 @tailwind utilities;
 
-*, *::before, *::after{
-    padding: 0;
-    margin: 0;
-    box-sizing: border-box;
+*,
+*::before,
+*::after {
+  padding: 0;
+  margin: 0;
+  box-sizing: border-box;
 }
 
-img{
-    transition: .3s ease all;
-    -webkit-transition: .3s ease all;
-    -moz-transition: .3s ease all;
-    -ms-transition: .3s ease all;
-    -o-transition: .3s ease all;
+img {
+  transition: 0.3s ease all;
+  -webkit-transition: 0.3s ease all;
+  -moz-transition: 0.3s ease all;
+  -ms-transition: 0.3s ease all;
+  -o-transition: 0.3s ease all;
 }
 
-img:hover{
-    scale: 105%;
-    transition: .8s ease-in-out all;
-    -webkit-transition: .8s ease-in-out all;
-    -moz-transition: .8s ease-in-out all;
-    -ms-transition: .8s ease-in-out all;
-    -o-transition: .8s ease-in-out all;
+img:hover {
+  scale: 105%;
+  transition: 0.8s ease-in-out all;
+  -webkit-transition: 0.8s ease-in-out all;
+  -moz-transition: 0.8s ease-in-out all;
+  -ms-transition: 0.8s ease-in-out all;
+  -o-transition: 0.8s ease-in-out all;
+}
+
+.loading {
+  width: 120px;
+  height: 20px;
+  -webkit-mask: linear-gradient(90deg, #ffc639 70%, #0000 0) left/20% 100%;
+  background: linear-gradient(#ffc639 0 0) left -25% top 0 /20% 100% no-repeat
+    #e4e4ed;
+  animation: ct7 1s infinite steps(6);
+}
+
+@keyframes ct7 {
+  100% {
+    background-position: right -25% top 0;
+  }
 }

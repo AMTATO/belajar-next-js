@@ -2,18 +2,19 @@
 
 import { MagnifyingGlass } from "@phosphor-icons/react";
 import { useRouter } from "next/navigation";
-import { useDebouncedCallback } from "use-debounce";
 
 const InputSearch = () => {
-  const { replace } = useRouter();
+  const router = useRouter();
 
-  const handleSearch = useDebouncedCallback((keyword) => {
-    if (keyword) {
-      replace(`/search/${keyword}`);
-    } else {
-      replace(`/`);
+  const handleSearch = (e: any) => {
+    if (e.key === "Enter") {
+      e.preventDefault();
+      const keyword = e.target.value;
+      if (keyword) {
+        router.push(`/search/${keyword}`);
+      }
     }
-  }, 300);
+  };
 
   return (
     <div className="relative">
@@ -21,8 +22,9 @@ const InputSearch = () => {
         placeholder="Cari anime..."
         className="w-full p-2 rounded"
         onChange={(e) => {
-          handleSearch(e.target.value);
+          handleSearch(e);
         }}
+        onKeyDown={handleSearch}
       />
       <MagnifyingGlass
         size={24}
