@@ -23,7 +23,7 @@ type Props = {
 };
 
 const Page = async (params: Props) => {
-  const keyword = params.params.keyword;
+  const keyword = decodeURI(params.params.keyword);
   const resultAnime = await getAnime(keyword);
   type Webp = {
     image_url: string;
