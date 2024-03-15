@@ -4,7 +4,6 @@ import { useState, useEffect } from "react";
 import HeaderMenu from "../components/Utilities/HeaderMenu";
 import Pagination from "../components/Utilities/Pagination";
 import AnimeCard from "../components/AnimeCard";
-import CardList from "../components/CardList";
 
 type Props = {};
 
@@ -46,13 +45,9 @@ const Page = (props: Props) => {
   }
   return (
     <>
-      <HeaderMenu />
-      <CardList
-        title={"Anime Populer"}
-        titleStyle="text-2xl font-bold"
-        link={"/"}
-        titleLink={"Beranda"}
-        data={topAnime.data?.map((data: AnimeData) => {
+      <HeaderMenu title={`ANIME TERPOPULER #${page}`} />
+      <div className="grid md:grid-cols-4 sm:grid-cols-3 grid-cols-2 gap-4 px-4 mb-4">
+        {topAnime.data?.map((data: AnimeData) => {
           return (
             <AnimeCard
               key={data.mal_id}
@@ -62,8 +57,8 @@ const Page = (props: Props) => {
             ></AnimeCard>
           );
         })}
-      />
-      <Pagination />
+      </div>
+      <Pagination page={page} lastPage={topAnime.pagination?.last_visible_page} setPage={setPage}/>
     </>
   );
 };
